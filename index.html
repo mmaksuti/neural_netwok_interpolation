@@ -1,0 +1,69 @@
+
+<html>
+<head>
+	<title>Graph</title>
+
+	<style>
+		body {
+			margin: 0;
+			overflow: hidden;
+		}
+		canvas {
+			width: 500px;
+			height: 500px;
+			margin: 0;
+			position: absolute;
+			margin: 0;
+			top: 50%;
+			transform: translate(0%, -50%);
+			border: 5px solid black;
+		}
+		#koordinata {
+			position: absolute;
+			top: 10%;
+			transform: translate(10%, -50%);
+		}
+		
+		#xy {
+			position: absolute;
+			top: 50%;
+			transform: translate(600px, -50%);
+		}
+		
+	</style>
+
+</head>
+<body>
+	<canvas>
+	</canvas>
+
+	<pre id="koordinata">Coordinate: </pre>
+
+	<pre id="xy">
+		<button id="add_new" onclick="addgraph()">New graph</button>
+
+		x: <input type="text" id="x"></input>
+		y: <input type="text" id="y"></input>
+		color: <input type="text" id="xycolor"></input>
+		<button onclick="if (!gr) alert('Please draw a graph first'); gr.fillWith([[parseInt(document.getElementById('x').value), parseInt(document.getElementById('y').value)]], document.getElementById('xycolor').value)">Add point</button>
+
+		function: <input type="text" id="func"></input>
+		color: <input type="text" id="funccolor"></input>
+		<button onclick="if (!gr) alert('Please draw a graph first'); eval('gr.drawFunction(function(x) {var '+document.getElementById('func').value+'; return y; }, document.getElementById(\'funccolor\').value)')">Plot function</button>
+
+		type: <select id="graphType">
+		<option value="auto">Auto-detect</option>
+		<option value="linear">Line</option>
+		<option value="parabola">Parabola</option>
+		<option value="hyperbole">Hyperbole</option>
+		</select>
+		learning rate: <input type="text" id="lRate" value="0.0001"></input>
+		<button onclick="guess()">Guess function</button>
+<br>		<span id="guessed">Guessed function: </span>
+
+	</pre>
+	<script src="graph.js"></script>
+	<script src="neural_network.js"></script>
+	<script src="code.js"></script>
+</body>
+</html>
